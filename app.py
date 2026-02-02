@@ -113,20 +113,20 @@ CANDIDATE CV:
 
 Provide your analysis in this EXACT markdown format:
 
-## 🎯 FIT SCORE: [number 0-100]/100
+##  FIT SCORE: [number 0-100]/100
 
-### ✅ Matched Requirements
+###  Matched Requirements
 - **[requirement 1]:** [brief evidence from CV]
 - **[requirement 2]:** [brief evidence from CV]
 - **[requirement 3]:** [brief evidence from CV]
 - **[requirement 4]:** [brief evidence from CV]
 - **[requirement 5]:** [brief evidence from CV]
 
-### ⚠️ Missing/Weak Areas
+###  Missing/Weak Areas
 - **[gap 1]:** [what's missing or weak]
 - **[gap 2]:** [what's missing or weak]
 
-### 📋 Verdict
+###  Verdict
 **[Strong Fit / Moderate Fit / Weak Fit]:** [One sentence recommendation]
 
 Use proper markdown with headers (##, ###), bold (**text**), and bullet points (-). Keep it well-structured and readable."""
@@ -188,42 +188,42 @@ Generate an interview kit in this EXACT markdown format:
 ### Question 1: Experience
 **Q:** [Question about their relevant experience]
 
-✅ **Strong Answer Should Include:** [What a good answer includes]
+ **Strong Answer Should Include:** [What a good answer includes]
 
 ---
 
 ### Question 2: Technical Skills
 **Q:** [Technical/skill-based question from JD requirements]
 
-✅ **Strong Answer Should Include:** [What a good answer includes]
+ **Strong Answer Should Include:** [What a good answer includes]
 
 ---
 
 ### Question 3: Project Deep-Dive
 **Q:** [Question about a specific project from their CV]
 
-✅ **Strong Answer Should Include:** [What a good answer includes]
+ **Strong Answer Should Include:** [What a good answer includes]
 
 ---
 
 ### Question 4: Behavioral
 **Q:** [Behavioral question relevant to the role]
 
-✅ **Strong Answer Should Include:** [What a good answer includes]
+ **Strong Answer Should Include:** [What a good answer includes]
 
 ---
 
 ### Question 5: Problem-Solving
 **Q:** [Problem-solving question for the role]
 
-✅ **Strong Answer Should Include:** [What a good answer includes]
+ **Strong Answer Should Include:** [What a good answer includes]
 
 ---
 
 ### Question 6: Culture Fit
 **Q:** [Culture/teamwork question]
 
-✅ **Strong Answer Should Include:** [What a good answer includes]
+ **Strong Answer Should Include:** [What a good answer includes]
 
 ---
 
@@ -232,14 +232,14 @@ Generate an interview kit in this EXACT markdown format:
 ### Clarification 1
 **Q:** [Question about a gap, unclear period, or missing requirement]
 
-🎯 **Why Ask This:** [What you're trying to clarify]
+ **Why Ask This:** [What you're trying to clarify]
 
 ---
 
 ### Clarification 2
 **Q:** [Question about a potential risk area]
 
-🎯 **Why Ask This:** [What you're trying to clarify]
+ **Why Ask This:** [What you're trying to clarify]
 
 Use proper markdown formatting with headers, bold text, and horizontal rules (---) for clear separation."""
 
@@ -274,11 +274,11 @@ def parse_json_safely(json_string):
 # =============================================================================
 
 # Header
-st.title("📋 CV Analyzer Pro")
+st.title(" CV Analyzer Pro")
 st.markdown("**Recruiter's Smart Screening Assistant** — Less but better.")
 
 # Privacy notice
-st.caption("🔒 Your data is processed in-memory only. We don't store CVs or job descriptions.")
+st.caption(" Your data is processed in-memory only. We don't store CVs or job descriptions.")
 
 st.divider()
 
@@ -287,7 +287,7 @@ st.divider()
 # =============================================================================
 
 with st.sidebar:
-    st.header("📄 Step 1: Upload CV")
+    st.header(" Step 1: Upload CV")
     uploaded_file = st.file_uploader(
         "Upload candidate CV (PDF)",
         type=["pdf"],
@@ -300,9 +300,9 @@ with st.sidebar:
             cv_text = extract_text_from_pdf(uploaded_file)
         
         if cv_text:
-            st.success(f"✅ CV loaded ({len(cv_text.split())} words)")
+            st.success(f" CV loaded ({len(cv_text.split())} words)")
         else:
-            st.error("❌ Could not extract text from PDF")
+            st.error(" Could not extract text from PDF")
     
     st.divider()
     
@@ -317,7 +317,7 @@ with st.sidebar:
     st.divider()
     
     # Analysis button
-    st.header("🚀 Step 3: Analyze")
+    st.header(" Step 3: Analyze")
     analyze_button = st.button(
         "⚡ Run Full Analysis",
         type="primary",
@@ -349,11 +349,11 @@ if analyze_button and cv_text and jd_text.strip():
     progress_bar = st.progress(0, text="Starting analysis...")
     
     # Step 1: Fit Score
-    progress_bar.progress(10, text="📊 Calculating fit score...")
+    progress_bar.progress(10, text=" Calculating fit score...")
     st.session_state.fit_score_result = generate_fit_score(cv_text, jd_text)
     
     # Step 2: Candidate Snapshot
-    progress_bar.progress(40, text="👤 Extracting candidate profile...")
+    progress_bar.progress(40, text=" Extracting candidate profile...")
     st.session_state.snapshot_result = generate_candidate_snapshot(cv_text)
     
     # Parse JSON
@@ -361,11 +361,11 @@ if analyze_button and cv_text and jd_text.strip():
     st.session_state.snapshot_json = parsed_json
     
     # Step 3: Interview Kit
-    progress_bar.progress(70, text="📝 Generating interview questions...")
+    progress_bar.progress(70, text=" Generating interview questions...")
     st.session_state.interview_kit_result = generate_interview_kit(cv_text, jd_text)
     
     # Complete
-    progress_bar.progress(100, text="✅ Analysis complete!")
+    progress_bar.progress(100, text=" Analysis complete!")
     st.session_state.analysis_complete = True
     
     # Clear progress bar after a moment
@@ -376,9 +376,9 @@ if st.session_state.analysis_complete:
     
     # Create three tabs for organized display
     tab1, tab2, tab3 = st.tabs([
-        "📊 Fit Score & Evidence",
-        "👤 Candidate Snapshot",
-        "📝 Interview Kit"
+        " Fit Score & Evidence",
+        " Candidate Snapshot",
+        " Interview Kit"
     ])
     
     # -------------------------------------------------------------------------
@@ -401,33 +401,33 @@ if st.session_state.analysis_complete:
             col1, col2 = st.columns(2)
             
             with col1:
-                st.markdown("**📌 Basic Info**")
+                st.markdown("** Basic Info**")
                 st.write(f"**Name:** {data.get('name', 'N/A')}")
                 st.write(f"**Email:** {data.get('email', 'N/A')}")
                 st.write(f"**Phone:** {data.get('phone', 'N/A')}")
                 st.write(f"**LinkedIn:** {data.get('linkedin', 'N/A')}")
                 
-                st.markdown("**💼 Current Position**")
+                st.markdown("** Current Position**")
                 st.write(f"**Role:** {data.get('current_role', 'N/A')}")
                 st.write(f"**Company:** {data.get('current_company', 'N/A')}")
                 st.write(f"**Experience:** {data.get('experience_years', 'N/A')} years")
             
             with col2:
-                st.markdown("**🛠️ Skills**")
+                st.markdown("** Skills**")
                 skills = data.get('skills', [])
                 if skills:
                     st.write(", ".join(skills))
                 else:
                     st.write("N/A")
                 
-                st.markdown("**🔧 Tools & Technologies**")
+                st.markdown("** Tools & Technologies**")
                 tools = data.get('tools_technologies', [])
                 if tools:
                     st.write(", ".join(tools))
                 else:
                     st.write("N/A")
                 
-                st.markdown("**🎓 Education**")
+                st.markdown("** Education**")
                 education = data.get('education', [])
                 if education:
                     for edu in education:
@@ -435,10 +435,10 @@ if st.session_state.analysis_complete:
                 else:
                     st.write("N/A")
             
-            st.markdown("**📝 Summary**")
+            st.markdown("** Summary**")
             st.info(data.get('summary', 'N/A'))
             
-            st.markdown("**🏆 Key Achievements**")
+            st.markdown("** Key Achievements**")
             achievements = data.get('key_achievements', [])
             if achievements:
                 for ach in achievements:
@@ -449,7 +449,7 @@ if st.session_state.analysis_complete:
             st.divider()
             
             # Export options
-            st.subheader("📥 Export Data")
+            st.subheader(" Export Data")
             col1, col2 = st.columns(2)
             
             with col1:
@@ -497,7 +497,7 @@ if st.session_state.analysis_complete:
 
 else:
     # Show instructions when no analysis has been run
-    st.info("👈 **Get started:** Upload a CV and paste a job description in the sidebar, then click 'Run Full Analysis'")
+    st.info(" **Get started:** Upload a CV and paste a job description in the sidebar, then click 'Run Full Analysis'")
     
     # Feature highlights
     st.markdown("### What you'll get:")
@@ -505,15 +505,15 @@ else:
     col1, col2, col3 = st.columns(3)
     
     with col1:
-        st.markdown("#### 📊 Fit Score")
+        st.markdown("####  Fit Score")
         st.write("0-100 match score with evidence from the CV showing why the candidate fits (or doesn't).")
     
     with col2:
-        st.markdown("#### 👤 Candidate Snapshot")
+        st.markdown("####  Candidate Snapshot")
         st.write("Structured profile extraction: skills, experience, education — exportable as JSON/CSV.")
     
     with col3:
-        st.markdown("#### 📝 Interview Kit")
+        st.markdown("####  Interview Kit")
         st.write("6 role-specific questions with rubrics + 2 clarification questions for gaps.")
 
 # =============================================================================
@@ -522,3 +522,4 @@ else:
 
 st.divider()
 st.caption("CV Analyzer Pro • Built for recruiters who value quality over quantity • Undergraduate Project 2025")
+
